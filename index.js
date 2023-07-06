@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')
 var fs = require('fs');
 const { makeDirectoryByPathSync } = require('./make_directory_recursive');
+const path = require('path');
 
 
 app.use(bodyParser.json());
@@ -32,6 +33,9 @@ app.post('/export', function (req, res) {
 
     res.status(200).json({ message: "Export Success" });
 });
+
+
+app.use(express.static(path.join(__dirname + '/./public')));
 
 
 // to forward with ngrok, use ngrok http 3001
